@@ -84,37 +84,40 @@ int main(void) {
     char name[100];
     printf("What's your name: ");
     scanf("%s", name);
-
-    // Choose difficulty level
-    printf("Hi %s, welcome to wordle!\nPlease chooose the difficulty level (1: Easy, 2: Medium 3: Hard) (Default: Easy)\n", name);
-    int difficulty;
-    int length;
-    scanf("%d", &difficulty);
     printf("\n");
-
-    if (difficulty == 2){
-        printf("Game start! Mediam Level, 6 letter words, 7 guesses\n");
-        length = 6;
-        
-    } else if (difficulty == 3){
-        printf("Game start! Hard Level, 7 letter words, 8 guesses\n");
-        length = 7;
-    } else {
-        difficulty = 1;
-        printf("Game start! Easy Level, 5 letter words, 6 guesses\n");
-        length = 5;
-    }
-    printf("You will have %d chances\nCorrect letters print in blue, out-of-place letters print in yellow, wrong letter print in red.\n\n", length+1);
-    int i = getWordList(length);
-
-    // Store wrong letters
-    char wrong_letters[26];
-    int index = 0;
     
     bool play = true;
-    bool win = false;
+
     while (play){
-        char *target = getRandomWord(i);
+        printf("********************** Hi %s, welcome to wordle! **********************\n", name);
+        // Choose difficulty level
+        printf("Please chooose the difficulty level (1: Easy, 2: Medium 3: Hard) (Default: Easy)\n");
+        int difficulty;
+        int length;
+        scanf("%d", &difficulty);
+        printf("\n");
+
+        if (difficulty == 2){
+            printf("Game start! Mediam Level, 6 letter words, 7 guesses\n");
+            length = 6;
+            
+        } else if (difficulty == 3){
+            printf("Game start! Hard Level, 7 letter words, 8 guesses\n");
+            length = 7;
+        } else {
+            difficulty = 1;
+            printf("Game start! Easy Level, 5 letter words, 6 guesses\n");
+            length = 5;
+        }
+        printf("You will have %d chances\nCorrect letters print in blue, out-of-place letters print in yellow, wrong letter print in red.\n\n", length+1);
+        
+        int i = getWordList(length);    // Generate word list
+        char *target = getRandomWord(i);    // Choose the target
+
+        // Store wrong letters
+        char wrong_letters[26];
+        int index = 0;
+        bool win = false;
         
         for (int i = 0; i < length+1; ++i) {
             char guess[100];
@@ -173,11 +176,13 @@ int main(void) {
         }
         
         char answer[5];
-        printf("You what paly again?(y/n)\n");
+        printf("You what play again?(y/n)\n");
         scanf("%s", answer);
         lowerstr(answer);
         if (strcmp(answer,"y")!=0 && strcmp(answer,"yes")!=0){
             play = false;
+        } else {
+            printf("\n");
         }
     }
     return 0;
