@@ -29,46 +29,36 @@ int nospecial(char *s, int size){
         } 
     }
     return 0;
-
-
 }
 
 int getWordList(int length){
-    // printf("Opening file: %s\n", "/usr/share/dict/words");
     FILE *file = fopen("/usr/share/dict/words", "r");
     if (file == NULL) {
-        perror("fopen");
-    // error handling
+        perror("fopen");    // error handling
     }
     FILE *outfile = fopen("wordslist", "w");
     if (file == NULL) {
-        perror("fopen");
-    // error handling
+        perror("fopen");    // error handling
     }
     char line[500];
     char words[500][10]; 
     int idx=0;
    
     while (fgets(line, 500, file) != NULL) {
-        //printf("%s", line);
         int size=strlen(line);
-       int n=nospecial(line,size);
+        int n=nospecial(line,size);
   
-        //printf("\n%d\n", n);
         if(size==length+1 && nospecial(line,size)==0){
-             //printf("%s", line);
             lowerstr(line);
              fputs(line, outfile);;
              idx++;
         }
-
-        /* Process the line */
-
     }
     fclose(file);
     fclose(outfile);
     return idx;
 }
+
 char* getRandomWord(int idx){
     time_t t;
     srand((unsigned) time(&t));
@@ -88,11 +78,9 @@ char* getRandomWord(int idx){
     fclose(outfile);
     return target;
 }
+
 int main(void) {
-    
-    
-    // game start
-    // Acquire name  
+    // game start, acquire player name  
     char name[100];
     printf("What's your name: ");
     scanf("%s", name);
@@ -102,7 +90,7 @@ int main(void) {
     int difficulty;
     int length;
     scanf("%d", &difficulty);
-
+    printf("\n");
 
     if (difficulty == 2){
         printf("Game start! Mediam Level, 6 letter words, 7 guesses\n");
@@ -116,7 +104,7 @@ int main(void) {
         printf("Game start! Easy Level, 5 letter words, 6 guesses\n");
         length = 5;
     }
-    printf("You will have %d chances\nCorrect letters print in blue, out-of-place letters print in yellow, wrong letter print in red.\n", length+1);
+    printf("You will have %d chances\nCorrect letters print in blue, out-of-place letters print in yellow, wrong letter print in red.\n\n", length+1);
     int i = getWordList(length);
 
     // Store wrong letters
@@ -129,8 +117,6 @@ int main(void) {
         char *target = getRandomWord(i);
         
         for (int i = 0; i < length+1; ++i) {
-    
-    
             char guess[100];
             printf("Enter your guess (%d/%d):", i+1, length+1);
             scanf("%s", guess);
@@ -142,12 +128,10 @@ int main(void) {
             }
             if (nospecial(guess, strlen(guess)+1)==1 || ifUpperStr(guess) == 1){
                 printf("That is not valid guess, don't use upper case or special character!\n");
-            continue;
-
+                continue;
             }
     
-            printf("                       ");
-            
+            printf("                       "); 
             for (int j = 0; j < length; ++j) {
                 if (target[j] == guess[j]) {
                     printf("\033[1;34m"); // Print in Blue
