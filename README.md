@@ -2,7 +2,7 @@
 
 Authors: Jingjing Cai, Qinaru Wei
 
-Wordle program is a word guessing game. This wordle game has three difficulty levels to choose  
+Wordle program is a word guessing game. This wordle game has three difficulty levels to choose: 
 - Easy: Guess a 5-letter word. You have 6 chances in total  
 - Medium: Guess a 6-letter word. You have 7 chances in total  
 - Hard: Guess a 7-letter word. You have 8 chances in total  

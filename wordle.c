@@ -48,8 +48,8 @@ int getWordList(int length){
   
         if(size==length+1 && nospecial(line,size)==0){
             lowerstr(line);
-             fputs(line, outfile);;
-             idx++;
+            fputs(line, outfile);;
+            idx++;
         }
     }
     fclose(file);
@@ -67,7 +67,6 @@ char* getRandomWord(int idx){
     while (fgets(line, 50, outfile) != NULL) {
         if (random==0){
             strcpy(target, line);
-            // printf("%s", target);
             break;
         }
         random--;
@@ -107,7 +106,7 @@ int main(void) {
             printf("Easy Level, ");
             length = 5;
         }
-        printf("target word has %d letters.\nYou will have %d chances to guess.\n"
+        printf("target word has %d letters (lowercase).\nYou will have %d chances to guess.\n"
         "Correct letters print in blue, out-of-place letters print in yellow, wrong letter print in red.\n\n", length, length+1);
         
         int i = getWordList(length);            // Generate word-list
