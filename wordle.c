@@ -171,12 +171,14 @@ int main(void) {
         if (!win){
             printf("You Lose, the answer is: %s\n", target);
         }
+
+        free(target);
         
-        char answer[5];
+        char again[5];
         printf("Play again? (y/n)\n");
-        scanf("%s", answer);
-        lowerstr(answer);
-        if (strcmp(answer,"y")!=0 && strcmp(answer,"yes")!=0){
+        scanf("%s", again);
+        lowerstr(again);
+        if (strcmp(again,"y")!=0 && strcmp(again,"yes")!=0){
             play = false;
         } else {
             printf("\n");
