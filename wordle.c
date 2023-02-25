@@ -88,10 +88,12 @@ int main(void) {
         printf("********************** Hi %s, welcome to Wordle! **********************\n", name);
         // Choose difficulty level
         printf("Please choose the difficulty level (1: Easy, 2: Medium, 3: Hard) (Default: Easy)\n");
+        char *input;
         int difficulty;
         int length;
-        scanf("%d", &difficulty);
+        scanf("%s", input);
         printf("\n");
+        sscanf(input, "%d", &difficulty);
 
         printf("Game start! ");
         if (difficulty == 2){
