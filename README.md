@@ -20,4 +20,4 @@ Choices:
 - Correct letters print in blue, out-of-place letters print in yellow, wrong letter print in red
 - Choose if you would like to play again
 
-![alt text](https://github.com/usf-cs521-sp23/L4-first-row-group/blob/main/Example)
+![alt text](https://github.com/usf-cs521-sp23/L4-first-row-group/blob/main/Example.jpg)
